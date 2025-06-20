@@ -2,6 +2,18 @@
 
 ## Getting Started
 
+1. Create an empty parent pom
+
+    ```bash
+    mvn archetype:generate \
+    -DarchetypeGroupId=org.codehaus.mojo.archetypes \
+    -DarchetypeArtifactId=pom-root \
+    -DgroupId=com.starlight \
+    -DartifactId=captainslog \
+    -Dversion=1.0.0-SNAPSHOT \
+    -DinteractiveMode=false
+    ```
+
 ## Java debugging in VSCode
 
 [configure vscode](https://code.visualstudio.com/docs/java/java-debugging)
@@ -10,68 +22,66 @@
 
 ```shell
 captainslog/
-├── app/
-│   └── CaptainsLogApplication.java           # Main Spring Boot app class
+├── bootstrap/                             # Spring Boot app entrypoint + config
+│   ├── CaptainsLogApplication.java
+│   ├── config/
+│   │   ├── SwaggerConfig.java
+│   │   ├── JpaConfig.java
+│   │   └── ApplicationProperties.java
+│   ├── monitoring/
+│   │   └── OpenTelemetryConfig.java
+│   ├── resources/
+│   │   ├── application.yml
+│   │   ├── logback-spring.xml
+│   │   └── messages.properties
+│   └── test/
+│       └── AppSmokeTest.java
 │
-├── domain/                                    # Core business logic (no Spring here)
-│   ├── model/                                 # Entities, Value Objects, Aggregates
+├── domain/                                # Core domain logic
+│   ├── model/
 │   │   ├── Todo.java
-│   │   ├── TodoId.java
 │   │   └── TodoStatus.java
 │   └── port/
-│       ├── in/                                # Input ports (use cases)
-│       │   ├── CreateTodoUseCase.java
-│       │   └── GetTodoQuery.java
-│       └── out/                               # Output ports (e.g., repository, observability)
-│           ├── SaveTodoPort.java
-│           └── LoadTodoPort.java
+│       ├── in/
+│       │   └── CreateTodoUseCase.java
+│       └── out/
+│           └── SaveTodoPort.java
 │
-├── application/                               # Use case implementations
+├── application/                           # Use case implementations
 │   └── service/
-│       └── CreateTodoService.java             # Implements input ports using domain logic
+│       └── CreateTodoService.java         # Implements CreateTodoUseCase
 │
-├── adapters/
-│   ├── in/                                    # Driving adapters (HTTP, CLI, messaging)
-│   │   └── rest/
-│   │       ├── TodoController.java
-│   │       └── dto/                           # DTOs for API layer
-│   │           ├── TodoRequest.java
-│   │           └── TodoResponse.java
-│   └── out/                                   # Driven adapters (persistence, observability)
-│       ├── persistence/
-│       │   ├── TodoEntity.java
-│       │   ├── JpaTodoRepository.java
-│       │   └── JpaTodoAdapter.java            # Implements SaveTodoPort + LoadTodoPort
-│       └── observability/
-│           └── OpenTelemetryConfig.java
+├── infrastructure/                        # Persistence, integrations, system adapters
+│   └── persistence/
+│       └── JpaTodoAdapter.java            # Implements SaveTodoPort
 │
-├── config/                                    # Configuration classes
-│   ├── JpaConfig.java
-│   ├── SwaggerConfig.java
-│   └── ApplicationProperties.java             # Bound to application.yml using @ConfigurationProperties
+├── adapters/                              # Driving adapters (HTTP, CLI, messaging)
+│   └── rest/
+│       ├── TodoController.java
+│       └── dto/
+│           ├── TodoRequest.java
+│           └── TodoResponse.java
 │
-├── resources/
-│   ├── application.yml                        # App configuration
-│   ├── logback-spring.xml                     # Logging config
-│   └── messages.properties                    # I18n support
-│
-├── test/
-│   ├── domain/                                # Unit tests for domain logic
-│   ├── application/                           # Use case tests
-│   ├── adapters/                              # Controller and integration tests
-│   └── integration/
-│       └── PostgresTestcontainersTest.java    # Real DB tests using Testcontainers
-│
-├── k8s/                                       # Kubernetes manifests
+├── k8s/                                   # Deployment manifests
 │   ├── deployment.yaml
 │   ├── service.yaml
 │   └── configmap.yaml
-│
-├── Dockerfile                                 # GraalVM native build image
-├── pom.xml                                    # Parent Maven POM
+├── Dockerfile
+├── pom.xml
 └── README.md
 
+
 ```
+
+## Maven Multi-module
+
+| Flag   | Long Option              | Description                                    |
+| ------ | ------------------------ | ---------------------------------------------- |
+| `-pl`  | `--projects`             | Specify module(s) to build or run goals for    |
+| `-am`  | `--also-make`            | Also build dependencies of the given module    |
+| `-amd` | `--also-make-dependents` | Build modules that depend on the selected ones |
+
+`mvn validate`
 
 ## SpringBoot Guidelines
 
@@ -79,7 +89,7 @@ captainslog/
 2. [SpringBoot Guidelines](https://github.com/JetBrains/junie-guidelines/blob/main/guidelines%2Fjava%2Fspring-boot%2Fguidelines-with-explanations.md)
 3. [Spring Error Handling](https://github.com/wimdeblauwe/error-handling-spring-boot-starter)
 4. [Why do I need better error handling](https://foojay.io/today/better-error-handling-for-your-spring-boot-rest-apis/)
-
+5. [learn](https://spring.io/projects/spring-boot#learn)
 
 ## Side Quests
 

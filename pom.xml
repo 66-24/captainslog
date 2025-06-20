@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.starlight</groupId>
+  <artifactId>captainslog</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>captainslog</name>
+  <description>Captains Log - A modular DDD Spring Boot application for task tracking</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <!-- Maven does not evaluate properties in the parent block.
+     Properties are loaded after the parent is resolved.
+      -->
+    <version>3.5.3</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <java.version>17</java.version>
+    <!-- spring-boot-starter-parent provides spring.boot.version and maven.compiler.{source,target} -->
+    <spring.boot.version>3.5.3</spring.boot.version>
+    <lombok.version>1.18.24</lombok.version>
+    <junit.jupiter.version>5.9.3</junit.jupiter.version>
+    <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
+    <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
+    <springdoc.version>1.6.14</springdoc.version>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- Compiler plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.10.1</version>
+          <configuration>
+            <release>${java.version}</release>
+          </configuration>
+        </plugin>
+
+        <!-- Surefire plugin (JUnit 5 runner) -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven.surefire.plugin.version}</version>
+          <configuration>
+            <useModulePath>false</useModulePath> <!-- Required for Java 17+ -->
+          </configuration>
+        </plugin>
+
+        <!-- Spring Boot plugin (used only by bootstrap module) -->
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>
