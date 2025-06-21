@@ -1,4 +1,4 @@
-package com.starlight.captainslog.bootstrap.web;
+package com.starlight.captainslog.infrastructure.api;
 
 import static org.hamcrest.Matchers.equalTo;
 
