@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CaptainsLogBootstrap<bootstrap>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.starlight.captainslog.bootstrap.CaptainsLogBootstrap",
+            "projectName": "bootstrap",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
