@@ -3,7 +3,8 @@
 CaptainsLog is a production-grade TODO microservice built with Spring Boot, DDD, TDD, observability-first principles, and Kubernetes-native resilience."
 
 ## Blueprint
-# Modern Microservice Development Blueprint
+
+## Modern Microservice Development Blueprint
 
 | **Category**            | **Concern**             | **Best Practice / Tool**                                    |
 | ----------------------- | ----------------------- | ----------------------------------------------------------- |
@@ -128,7 +129,8 @@ CaptainsLog is a production-grade TODO microservice built with Spring Boot, DDD,
 
 ## Java debugging in VSCode
 
-[configure vscode](https://code.visualstudio.com/docs/java/java-debugging)
+1. [Launch Configuration](https://code.visualstudio.com/docs/debugtest/debugging#_launch-configurations)
+1. [Java Debugging](https://code.visualstudio.com/docs/java/java-debugging)
 
 ## Project layout
 
@@ -202,6 +204,30 @@ captainslog/
 3. [Spring Error Handling](https://github.com/wimdeblauwe/error-handling-spring-boot-starter)
 4. [Why do I need better error handling](https://foojay.io/today/better-error-handling-for-your-spring-boot-rest-apis/)
 5. [learn](https://spring.io/projects/spring-boot#learn)
+
+## Spring
+
+### API Testing with RestAssured and `@LocalServerPort`
+
+We use [RestAssured](https://rest-assured.io/) for integration testing of HTTP endpoints. It provides a fluent Java DSL for writing expressive and readable API tests.
+
+Spring Boot assigns a random port to the embedded server during tests. We use `@LocalServerPort` to inject this port and configure RestAssured accordingly:
+
+```java
+@LocalServerPort
+int port;
+
+@BeforeEach
+void setup() {
+    RestAssured.port = port;
+}
+```
+
+This setup ensures:
+
+1. No port conflicts
+2. Realistic HTTP testing
+3. Full application context is started and exercised
 
 ## Side Quests
 
