@@ -1,6 +1,17 @@
 { pkgs, lib, config, inputs, ... }:
 
 {
+  # ❗ Avoid referencing `config.env.APP_ENV` directly in the same config block:
+  # This causes infinite recursion because `config` is still being built.
+  # Instead, compute APP_ENV from `builtins.getEnv "APP_ENV"` or bind it earlier in a `let`.
+
+  dotenv = {
+    enable = true;
+    # https://devenv.sh/integrations/dotenv/
+    # https://devenv.sh/reference/options/#dotenvfilename
+    filename = [".env.development"];
+  };
+
   # https://devenv.sh/basics/
   env.GREET = "devenv";
 
@@ -18,6 +29,8 @@
 
   # https://devenv.sh/scripts/
   scripts.hello.exec = ''
+    echo "app env: $APP_ENV"
+    echo "active spring profile: $SPRING_PROFILES_ACTIVE"
     echo hello from $GREET
   '';
 
