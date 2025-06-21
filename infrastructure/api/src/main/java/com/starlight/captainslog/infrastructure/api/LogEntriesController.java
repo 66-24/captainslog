@@ -7,7 +7,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/log-entries")
-public class LogEntryController {
+public class LogEntriesController {
 
     @PostMapping
     public ResponseEntity<Map<String,String>> recordLogEntry(@RequestBody Map<String,String> payload) {

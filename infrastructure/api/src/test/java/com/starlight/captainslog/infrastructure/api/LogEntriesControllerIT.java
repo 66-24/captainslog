@@ -12,7 +12,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import io.restassured.RestAssured;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class LogEntryControllerIT {
+public class LogEntriesControllerIT {
 
     @LocalServerPort
     int port;
