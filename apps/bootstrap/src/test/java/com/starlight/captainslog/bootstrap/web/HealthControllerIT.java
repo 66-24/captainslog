@@ -1,13 +1,14 @@
 package com.starlight.captainslog.bootstrap.web;
 
 
-import io.restassured.RestAssured;
+import static org.hamcrest.Matchers.equalTo;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
-import static org.hamcrest.Matchers.equalTo;
+import io.restassured.RestAssured;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class HealthControllerIT {
