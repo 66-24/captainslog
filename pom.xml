@@ -1,6 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.starlight</groupId>
   <artifactId>captainslog</artifactId>
@@ -16,7 +15,8 @@
      Properties are loaded after the parent is resolved.
       -->
     <version>3.5.3</version>
-    <relativePath /> <!-- lookup parent from repository -->
+    <relativePath />
+    <!-- lookup parent from repository -->
   </parent>
 
   <properties>
@@ -29,6 +29,10 @@
     <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
     <springdoc.version>1.6.14</springdoc.version>
   </properties>
+
+<modules>
+  <module>apps/bootstrap</module>
+</modules>
 
   <build>
     <pluginManagement>
@@ -49,7 +53,7 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven.surefire.plugin.version}</version>
           <configuration>
-            <useModulePath>false</useModulePath> <!-- Required for Java 17+ -->
+            <useModulePath>false</useModulePath>            <!-- Required for Java 17+ -->
           </configuration>
         </plugin>
 
