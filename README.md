@@ -197,6 +197,44 @@ captainslog/
 
 `mvn validate`
 
+### Check effective pom
+
+From project root run
+
+```bash
+ mvn -B help:effective-pom
+```
+
+> Always do a `mvn clean verify` from the project root after a refactor. Else old classes may cause build to pass.
+>Example: `@SpringBootTest( classes = com.starlight.captainslog.rest.CaptainsLogBootstrap.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)`
+> This will pass if CaptainsLogBootstrap was moved to a new folder but the old class still exists. It will fail on a `mvn clean verify`
+>
+
+## NullGuard
+
+| Tool            | Role                                                                |
+| --------------- | ------------------------------------------------------------------- |
+| **JSpecify**    | Adds standard annotations like `@Nullable`, `@NonNull`              |
+| **NullAway**    | An **Error Prone plugin** that enforces null-safety at compile time |
+| **Error Prone** | Static analyzer that plugs into `javac` to catch coding bugs        |
+
+* [jspecifiy-nullaway-demo](https://github.com/sdeleuze/jspecify-nullway-demo)
+* [jspecify talk](https://www.youtube.com/watch?v=5Lbxq6LP7FY&t=1348s)
+
+### Steps
+
+1. Mark package as `@NullMarked` using `package-info.java`
+2. Then mark the fields you want to guard against as `@Nullable`
+
+See [LogEntryId.java](https://vscode.dev/github/66-24/captainslog/blob/main/domain/src/main/java/com/starlight/captainslog/domain/model/LogEntryId.java#L15)
+You should see a build failure:
+
+```bash
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:compile (default-compile) on project captainslog-domain: Compilation failure
+[ERROR] /home/kirk/Projects/captainslog/domain/src/main/java/com/starlight/captainslog/domain/model/LogEntryId.java:[9,16] error: [NullAway] assigning @Nullable expression to @NonNull field
+[ERROR]     (see http://t.uber.com/nullaway )
+```
+
 ## SpringBoot Guidelines
 
 1. [SpringBoot project structure](https://gist.github.com/sivaprasadreddy/9751db630b819b39e5e87f5ecfb53346#file-guidelines-md)
