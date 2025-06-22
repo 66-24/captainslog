@@ -10,7 +10,7 @@
         <relativePath>../../pom.xml</relativePath>        <!-- 👈 Adjust as needed -->
     </parent>
 
-    <artifactId>infrastructure-api</artifactId>
+    <artifactId>captainslog-infrastructure-api</artifactId>
     <packaging>jar</packaging>
     <name>CaptainsLog :: Infrastructure :: API</name>
 
@@ -18,6 +18,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.starlight</groupId>
+            <artifactId>captainslog-bootstrap</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
         <!-- Spring Boot Test Suite -->
         <dependency>
@@ -39,4 +46,29 @@
         </dependency>
 
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <!-- Failsafe plugin for integration testing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

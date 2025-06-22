@@ -30,10 +30,11 @@
     <springdoc.version>1.6.14</springdoc.version>
   </properties>
 
-<modules>
-  <module>apps/bootstrap</module>
-  <module>infrastructure/api</module>
-</modules>
+  <modules>
+    <module>apps/bootstrap</module>
+    <module>infrastructure/api</module>
+    <module>domain/spi</module>
+  </modules>
 
   <build>
     <pluginManagement>

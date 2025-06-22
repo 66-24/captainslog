@@ -9,10 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
+
 import io.restassured.RestAssured;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class LogEntriesControllerIT {
+@SpringBootTest( classes = com.starlight.captainslog.bootstrap.CaptainsLogBootstrap.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class LogEntriesControllerIT {
 
     @LocalServerPort
     int port;
