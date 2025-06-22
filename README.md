@@ -1,6 +1,6 @@
 # Captains Log - A TODO Microservice Blueprint with DDD, TDD, and Observability
 
-CaptainsLog is a production-grade TODO microservice built with Spring Boot, DDD, TDD, observability-first principles, and Kubernetes-native resilience."
+CaptainsLog is a production-grade TODO microservice built with Spring Boot, DDD, observability-first principles, and Kubernetes-native resilience."
 
 ## Blueprint
 
@@ -220,6 +220,7 @@ From project root run
 
 * [jspecifiy-nullaway-demo](https://github.com/sdeleuze/jspecify-nullway-demo)
 * [jspecify talk](https://www.youtube.com/watch?v=5Lbxq6LP7FY&t=1348s)
+* [JSpecify Demo Deck](null-safety-in-java-with-jspecify-and-nullaway-springio.pdf)
 
 ### Steps
 
