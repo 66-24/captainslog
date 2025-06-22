@@ -210,7 +210,9 @@ From project root run
 > This will pass if CaptainsLogBootstrap was moved to a new folder but the old class still exists. It will fail on a `mvn clean verify`
 >
 
-## NullGuard
+## 🦺 Guard Rails
+
+### NullGuard
 
 | Tool            | Role                                                                |
 | --------------- | ------------------------------------------------------------------- |
@@ -221,6 +223,14 @@ From project root run
 * [jspecifiy-nullaway-demo](https://github.com/sdeleuze/jspecify-nullway-demo)
 * [jspecify talk](https://www.youtube.com/watch?v=5Lbxq6LP7FY&t=1348s)
 * [JSpecify Demo Deck](null-safety-in-java-with-jspecify-and-nullaway-springio.pdf)
+
+## Backwards Compatibility
+
+Sometimes we need to use a more recent version of the JDK during development but deploy to a production system that has an older version of the SDK. When this happens new languague features used during development will throw runtime errors in production.
+To protect against this use the [`<release>` property](https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html).
+> Set the note at the bottom
+>Merely setting the target option does not guarantee that your code actually runs on a JRE with the specified version. The pitfall is unintended usage of APIs that only exist in later JREs which would make your code fail at runtime with a linkage error. To avoid this issue, you can either configure the compiler's boot classpath to match the target JRE, or use the Animal Sniffer Maven Plugin to verify your code doesn't use unintended APIs, or better yet use the release option supported since JDK 9. Since plugin version 3.13.0 you can use the release property also on JDK 8. The compiler plugin will convert it to source and target automatically.
+
 
 ### Steps
 
