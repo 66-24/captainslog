@@ -50,6 +50,10 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
             <!-- Failsafe plugin for integration testing -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -71,12 +75,11 @@
             </plugin>
         </plugins>
     </build>
-
-    <!-- Used by mvn site site:stage for multi-module projects-->
+        <!-- Used by mvn site site:stage for multi-module projects-->
     <distributionManagement>
         <site>
-            <id>local-staging</id>
-            <url>file://${project.build.directory}/staging</url>
+            <id>site</id>
+            <url>file://${project.basedir}/target/site</url>
         </site>
     </distributionManagement>
 </project>
