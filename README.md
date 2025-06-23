@@ -197,9 +197,44 @@ captainslog/
 
 `mvn validate`
 
+Check versions [at sonatype](https://central.sonatype.com/artifact/org.codehaus.mojo/license-maven-plugin/2.6.0?smo=true) 
+
+### FasterBuilds
+
+Use [mvnd](https://github.com/apache/maven-mvnd?tab=readme-ov-file#mvnd-specific-options)
+
+```log
+[INFO]   from infrastructure/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in CaptainsLog Infrastructure:
+[WARNING]   org.apache.maven.plugins:maven-site-plugin:3.21.0
+[WARNING]
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
+```
+
 ### Build order
 
 When all the child poms are wired to the parent correctly:
+
+```xml
+  <parent>
+    <groupId>com.starlight</groupId>
+    <artifactId>captainslog-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+```
 
 ```log
 mvn clean verify
