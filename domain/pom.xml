@@ -13,26 +13,80 @@
   <groupId>com.starlight</groupId>
   <artifactId>captainslog-domain</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>CaptainsLog :: Domain</name>
+  <name>CaptainsLog Domain</name>
 
-  <!-- Inherited from spring-boot-starter -->
-  <!-- <properties>
-    <java.version>21</java.version>
-  </properties> -->
-
-
-  <!-- <dependencies>
+  <dependencies>
     <dependency>
       <groupId>org.jspecify</groupId>
       <artifactId>jspecify</artifactId>
       <version>1.0.0</version>
     </dependency>
-  </dependencies> -->
-    <!-- Used by mvn site site:stage for multi-module projects-->
-    <distributionManagement>
-        <site>
-            <id>site</id>
-            <url>file://${project.basedir}/target/site</url>
-        </site>
-    </distributionManagement>
+  </dependencies>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <!-- Used by mvn site site:stage for multi-module projects-->
+  <distributionManagement>
+    <site>
+      <id>site</id>
+      <url>file://${project.basedir}/target/site</url>
+    </site>
+  </distributionManagement>
 </project>

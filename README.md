@@ -197,6 +197,22 @@ captainslog/
 
 `mvn validate`
 
+### Build order
+
+When all the child poms are wired to the parent correctly:
+
+```log
+mvn clean verify
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO]
+[INFO] CaptainsLog Parent                                                 [pom]
+[INFO] CaptainsLog Application                                            [jar]
+[INFO] CaptainsLog Domain                                                 [jar]
+[INFO] CaptainsLog Infrastructure                                         [jar]
+```
+
 ### Check effective pom
 
 From project root run
@@ -204,6 +220,8 @@ From project root run
 ```bash
  mvn -B help:effective-pom
 ```
+
+### Testing
 
 > Always do a `mvn clean verify` from the project root after a refactor. Else old classes may cause build to pass.
 >Example: `@SpringBootTest( classes = com.starlight.captainslog.rest.CaptainsLogBootstrap.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)`
@@ -273,6 +291,14 @@ Use the default bundled rules for now
 
 Request [API KEY](https://nvd.nist.gov/developers/request-an-api-key)
 Used by the NVD plugin, exported to `NVD_API_KEY`
+
+### Error Prone
+
+```log
+[WARNING] /home/kirk/Projects/captainslog/domain/src/main/java/com/starlight/captainslog/domain/model/LogEntry.java:[7,51] [JavaTimeDefaultTimeZone] LocalDateTime.now() is not allowed because it silently uses the system default time-zone. You must pass an explicit time-zone (e.g., ZoneId.of("America/Los_Angeles")) to this method.
+    (see https://errorprone.info/bugpattern/JavaTimeDefaultTimeZone)
+  Did you mean 'this(id, title, category, LocalDateTime.now(ZoneId.systemDefault()));'?
+```
 
 ## SpringBoot Guidelines
 
