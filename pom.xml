@@ -19,7 +19,7 @@
 
     <url>https://github.com/66-24/captainslog</url>
 
-    <name>CaptainsLog :: Domain :: SPI</name>
+    <name>CaptainsLog :: Domain</name>
 
     <modules>
         <module>apps</module>
@@ -132,6 +132,7 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.26.0</version>
                 <configuration>
+                     <targetJdk>21</targetJdk>
                     <rulesets>
                         <ruleset>/rulesets/java/maven-pmd-plugin-default.xml</ruleset>
                     </rulesets>
@@ -151,6 +152,13 @@
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>4.9.3.0</version>
+                <configuration>
+                    <onlyAnalyze>com.starlight.captainslog.*</onlyAnalyze>
+                    <failOnError>true</failOnError>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <!-- <excludeFilterFile>${project.basedir}/config/spotbugs/exclude.xml</excludeFilterFile> -->
+                </configuration>
                 <executions>
                     <execution>
                         <phase>verify</phase>
@@ -222,8 +230,14 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
+    <!-- Used by mvn site site:stage for multi-module projects-->
+    <distributionManagement>
+        <site>
+            <id>local-staging</id>
+            <url>file://${project.build.directory}/staging</url>
+        </site>
+    </distributionManagement>
 </project>

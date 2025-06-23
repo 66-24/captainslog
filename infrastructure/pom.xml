@@ -12,7 +12,7 @@
 
     <artifactId>captainslog-infrastructure-api</artifactId>
     <packaging>jar</packaging>
-    <name>CaptainsLog :: Infrastructure :: API</name>
+    <name>CaptainsLog :: Infrastructure</name>
 
     <dependencies>
         <dependency>
@@ -71,4 +71,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <!-- Used by mvn site site:stage for multi-module projects-->
+    <distributionManagement>
+        <site>
+            <id>local-staging</id>
+            <url>file://${project.build.directory}/staging</url>
+        </site>
+    </distributionManagement>
 </project>

@@ -15,9 +15,42 @@
   <version>1.0.0-SNAPSHOT</version>
   <name>CaptainsLog :: Domain</name>
 
+  <!-- Inherited from spring-boot-starter -->
   <!-- <properties>
     <java.version>21</java.version>
   </properties> -->
+
+  <!-- Maven does not inherit `<reporting>` from the parent pom-->
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.11</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.3.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.26.0</version>
+      </plugin>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>4.9.3.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.2.5</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
 
   <dependencies>
     <dependency>
@@ -68,4 +101,12 @@
       </plugin>
     </plugins>
   </build>
+
+  <!-- Used by mvn site site:stage for multi-module projects-->
+  <distributionManagement>
+    <site>
+      <id>local-staging</id>
+      <url>file://${project.build.directory}/staging</url>
+    </site>
+  </distributionManagement>
 </project>
