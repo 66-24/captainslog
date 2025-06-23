@@ -245,6 +245,35 @@ You should see a build failure:
 [ERROR]     (see http://t.uber.com/nullaway )
 ```
 
+### Sonar
+
+```bash
+ mvn verify sonar:sonar   -Dsonar.projectKey=captainslog   -Dsonar.login=$SONARQUBE_TOKEN   -Dsonar.host.url=http://localhost:9000
+```
+
+### License maven checker
+
+Use one of [fdl_v1_3, lgpl_v3, agpl_v3, gpl_v3, gpl_v2, gpl_v1, apache_v2, epl_v2, epl_only_v2, epl_only_v1, epl_v1, cddl_v1, lgpl_v2_1, mit, bsd_2, bsd_3, eupl_v1_1]
+
+### CheckStyle
+
+[Rules](https://github.com/patrickfav/checkstyle-config/blob/master/src/main/resources/checkstyle.xml)
+
+### PMD
+
+Use the default bundled rules for now
+
+```xml
+<rulesets>
+  <ruleset>/rulesets/java/maven-pmd-plugin-default.xml</ruleset>
+</rulesets>
+```
+
+#### NVD Scan
+
+Request [API KEY](https://nvd.nist.gov/developers/request-an-api-key)
+Used by the NVD plugin, exported to `NVD_API_KEY`
+
 ## SpringBoot Guidelines
 
 1. [SpringBoot project structure](https://gist.github.com/sivaprasadreddy/9751db630b819b39e5e87f5ecfb53346#file-guidelines-md)
